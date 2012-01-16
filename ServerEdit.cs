@@ -34,7 +34,7 @@ namespace DBMulticast
                     tb_Location.Text = svr.svr;
                     tb_Password.Text = svr.password;
                     tb_Username.Text = svr.username;
-                    cb_UseSqlCredentials.Checked = svr.usesspi;
+                    cb_UseSqlCredentials.Checked = !svr.usesspi;
 
                 }
                 else if (tn.Tag.GetType() == typeof(DBMulticast.ServerList))
