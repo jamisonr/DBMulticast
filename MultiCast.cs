@@ -390,13 +390,29 @@ namespace DBMulticast
 
         private void LoadDatabaseDefinitions()
         {
+            var configFile = Path.Combine(Settings.Default.ServerConfigLocation, "servers.xml");
+            EnsureDBDefsExist(configFile);
             var s = new XmlSerializer(typeof(ServerList));
-            using (TextReader r = new StreamReader(Path.Combine(Settings.Default.ServerConfigLocation, "servers.xml")))
+            using (TextReader r = new StreamReader(configFile))
             {
                 _ServerList = (ServerList)s.Deserialize(r);
             }
 
             AddServerListToTree(_ServerList, null);
+        }
+
+        private void EnsureDBDefsExist(string configFile)
+        {
+            if (!File.Exists(configFile))
+            {
+                var s = new XmlSerializer(typeof(ServerList));
+                var obj = new ServerList();
+                obj.Expanded = true;
+                using (TextWriter w = new StreamWriter(configFile))
+                {
+                    s.Serialize(w, obj);
+                }
+            }
         }
 
         private void SaveDatabaseDefinitions()
@@ -467,8 +483,8 @@ namespace DBMulticast
                 }
             }
             self.Tag = serverList;
-            if (self.Nodes.Count > 0)
-            {
+            //if (self.Nodes.Count > 0)
+            //{
                 if (parentNode == null)
                 {
                     dbTree.Nodes.Clear();
@@ -481,7 +497,7 @@ namespace DBMulticast
                 else
                     parentNode.Nodes.Add(self);
                 if (serverList.Expanded) self.Expand();
-            }
+            //}
         }
 
 

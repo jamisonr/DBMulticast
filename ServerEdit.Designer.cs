@@ -34,7 +34,7 @@
             this.lblDatabase = new System.Windows.Forms.Label();
             this.lblLocation = new System.Windows.Forms.Label();
             this.tb_Database = new System.Windows.Forms.TextBox();
-            this.cb_UseSSPI = new System.Windows.Forms.CheckBox();
+            this.cb_UseSqlCredentials = new System.Windows.Forms.CheckBox();
             this.tb_Password = new System.Windows.Forms.TextBox();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -93,16 +93,16 @@
             this.tb_Database.Size = new System.Drawing.Size(178, 20);
             this.tb_Database.TabIndex = 3;
             // 
-            // cb_UseSSPI
+            // cb_UseSqlCredentials
             // 
-            this.cb_UseSSPI.AutoSize = true;
-            this.cb_UseSSPI.Location = new System.Drawing.Point(24, 203);
-            this.cb_UseSSPI.Name = "cb_UseSSPI";
-            this.cb_UseSSPI.Size = new System.Drawing.Size(72, 17);
-            this.cb_UseSSPI.TabIndex = 8;
-            this.cb_UseSSPI.Text = "Use SSPI";
-            this.cb_UseSSPI.UseVisualStyleBackColor = true;
-            this.cb_UseSSPI.CheckedChanged += new System.EventHandler(this.cb_UseSSPI_CheckedChanged);
+            this.cb_UseSqlCredentials.AutoSize = true;
+            this.cb_UseSqlCredentials.Location = new System.Drawing.Point(24, 203);
+            this.cb_UseSqlCredentials.Name = "cb_UseSqlCredentials";
+            this.cb_UseSqlCredentials.Size = new System.Drawing.Size(152, 17);
+            this.cb_UseSqlCredentials.TabIndex = 8;
+            this.cb_UseSqlCredentials.Text = "Use Sql Server Credentials";
+            this.cb_UseSqlCredentials.UseVisualStyleBackColor = true;
+            this.cb_UseSqlCredentials.CheckedChanged += new System.EventHandler(this.cb_UseSSPI_CheckedChanged);
             // 
             // tb_Password
             // 
@@ -197,7 +197,7 @@
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.tb_Username);
-            this.Controls.Add(this.cb_UseSSPI);
+            this.Controls.Add(this.cb_UseSqlCredentials);
             this.Controls.Add(this.lblLocation);
             this.Controls.Add(this.lblDatabase);
             this.Controls.Add(this.tb_Database);
@@ -219,7 +219,7 @@
         private System.Windows.Forms.Label lblDatabase;
         private System.Windows.Forms.Label lblLocation;
         private System.Windows.Forms.TextBox tb_Database;
-        private System.Windows.Forms.CheckBox cb_UseSSPI;
+        private System.Windows.Forms.CheckBox cb_UseSqlCredentials;
         private System.Windows.Forms.TextBox tb_Password;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblPassword;

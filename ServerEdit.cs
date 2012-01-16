@@ -32,7 +32,7 @@ namespace DBMulticast
                 tb_Location.Text = svr.svr;
                 tb_Password.Text = svr.password;
                 tb_Username.Text = svr.username;
-                cb_UseSSPI.Checked = svr.usesspi;
+                cb_UseSqlCredentials.Checked = svr.usesspi;
             }
             else
             {
@@ -45,7 +45,7 @@ namespace DBMulticast
 
         private void cb_UseSSPI_CheckedChanged(object sender, EventArgs e)
         {
-            var val = !cb_UseSSPI.Checked;
+            var val = cb_UseSqlCredentials.Checked;
             lblUserName.Enabled = val;
             lblPassword.Enabled = val;
             tb_Username.Enabled = val;
@@ -76,6 +76,7 @@ namespace DBMulticast
                     else if (tn.Tag.GetType() == typeof(ServerList))
                     {
                         tn.Nodes.Add(node);
+                        tn.Expand();
                     }
                 }
             }
@@ -85,9 +86,9 @@ namespace DBMulticast
                 svr.servername = tb_Name.Text;
                 svr.database = tb_Database.Text;
                 svr.svr = tb_Location.Text;
-                svr.password = tb_Password.Text;
-                svr.username = tb_Username.Text;
-                svr.usesspi = cb_UseSSPI.Checked;
+                svr.password = cb_UseSqlCredentials.Checked ? tb_Password.Text : null;
+                svr.username = cb_UseSqlCredentials.Checked ? tb_Username.Text : null;
+                svr.usesspi = !cb_UseSqlCredentials.Checked;
 
                 if (IsEdit)
                 {
@@ -109,6 +110,7 @@ namespace DBMulticast
                     else if (tn.Tag.GetType() == typeof(ServerList))
                     {
                         tn.Nodes.Add(node);
+                        tn.Expand();
                     }
                 }
             }
@@ -131,7 +133,7 @@ namespace DBMulticast
             tb_Location.Enabled = false;
             lblDatabase.Enabled = false;
             tb_Database.Enabled = false;
-            cb_UseSSPI.Enabled = false;
+            cb_UseSqlCredentials.Enabled = false;
         }
 
         private void editServer_CheckedChanged(object sender, EventArgs e)
@@ -140,7 +142,7 @@ namespace DBMulticast
             tb_Location.Enabled = true;
             lblDatabase.Enabled = true;
             tb_Database.Enabled = true;
-            cb_UseSSPI.Enabled = true;
+            cb_UseSqlCredentials.Enabled = true;
         }
     }
 }
