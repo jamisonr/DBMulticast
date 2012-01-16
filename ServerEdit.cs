@@ -23,23 +23,28 @@ namespace DBMulticast
             InitializeComponent();
             IsEdit = isEdit;
             this.tn = tn;
-            if (tn.Tag != null && tn.Tag.GetType() == typeof(DBMulticast.Server) && isEdit)
+            rdoServer.Checked = true;
+            if (tn.Tag != null && isEdit)
             {
-                var svr = tn.Tag as Server;
-                rdoServer.Checked = true;
-                tb_Name.Text = svr.servername;
-                tb_Database.Text = svr.database;
-                tb_Location.Text = svr.svr;
-                tb_Password.Text = svr.password;
-                tb_Username.Text = svr.username;
-                cb_UseSqlCredentials.Checked = svr.usesspi;
-            }
-            else
-            {
-                var svrList = tn.Tag as ServerList;
-                rdoFolder.Checked = true;
-                if(isEdit)
+                if (tn.Tag != null && tn.Tag.GetType() == typeof(DBMulticast.Server))
+                {
+                    var svr = tn.Tag as Server;
+                    tb_Name.Text = svr.servername;
+                    tb_Database.Text = svr.database;
+                    tb_Location.Text = svr.svr;
+                    tb_Password.Text = svr.password;
+                    tb_Username.Text = svr.username;
+                    cb_UseSqlCredentials.Checked = svr.usesspi;
+
+                }
+                else if (tn.Tag.GetType() == typeof(DBMulticast.ServerList))
+                {
+                    var svrList = tn.Tag as ServerList;
+                    rdoFolder.Checked = true;
                     tb_Name.Text = svrList.Name;
+                }
+                rdoFolder.Enabled = false;
+                rdoServer.Enabled = false;
             }
         }
 

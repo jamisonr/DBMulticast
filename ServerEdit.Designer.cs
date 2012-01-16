@@ -163,7 +163,7 @@
             // rdoFolder
             // 
             this.rdoFolder.AutoSize = true;
-            this.rdoFolder.Location = new System.Drawing.Point(24, 13);
+            this.rdoFolder.Location = new System.Drawing.Point(86, 12);
             this.rdoFolder.Name = "rdoFolder";
             this.rdoFolder.Size = new System.Drawing.Size(54, 17);
             this.rdoFolder.TabIndex = 15;
@@ -175,7 +175,7 @@
             // rdoServer
             // 
             this.rdoServer.AutoSize = true;
-            this.rdoServer.Location = new System.Drawing.Point(96, 13);
+            this.rdoServer.Location = new System.Drawing.Point(24, 12);
             this.rdoServer.Name = "rdoServer";
             this.rdoServer.Size = new System.Drawing.Size(56, 17);
             this.rdoServer.TabIndex = 16;
