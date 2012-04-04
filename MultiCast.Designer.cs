@@ -285,6 +285,8 @@
             // 
             // tbTimeout
             // 
+            this.tbTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top )
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTimeout.Location = new System.Drawing.Point(753, 5);
             this.tbTimeout.Name = "tbTimeout";
             this.tbTimeout.Size = new System.Drawing.Size(47, 20);
