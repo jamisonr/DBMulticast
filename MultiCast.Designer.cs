@@ -50,6 +50,7 @@
             this.tabResults = new System.Windows.Forms.TabControl();
             this.tbTimeout = new System.Windows.Forms.TextBox();
             this.lblRecords = new System.Windows.Forms.Label();
+            this.lblTimeout = new System.Windows.Forms.Label();
             this.rbText = new System.Windows.Forms.RadioButton();
             this.rbGrid = new System.Windows.Forms.RadioButton();
             this.resultsTextBox = new ScintillaNet.Scintilla();
@@ -230,6 +231,7 @@
             // 
             // splitContainer3.Panel2
             // 
+            this.splitContainer3.Panel2.Controls.Add(this.lblTimeout);
             this.splitContainer3.Panel2.Controls.Add(this.tabResults);
             this.splitContainer3.Panel2.Controls.Add(this.tbTimeout);
             this.splitContainer3.Panel2.Controls.Add(this.execute);
@@ -240,6 +242,17 @@
             this.splitContainer3.Size = new System.Drawing.Size(804, 532);
             this.splitContainer3.SplitterDistance = 277;
             this.splitContainer3.TabIndex = 11;
+            // 
+            // lblTimeout
+            // 
+            this.lblTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTimeout.Location = new System.Drawing.Point(673, 8);
+            this.lblTimeout.Name = "lblTimeout";
+            this.lblTimeout.Size = new System.Drawing.Size(78, 20);
+            this.lblTimeout.TabIndex = 13;
+            this.lblTimeout.Text = "Timeout (s):";
+            this.lblTimeout.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // sqlTextBox
             // 
@@ -272,7 +285,7 @@
             // 
             // tbTimeout
             // 
-            this.tbTimeout.Location = new System.Drawing.Point(189, 5);
+            this.tbTimeout.Location = new System.Drawing.Point(753, 5);
             this.tbTimeout.Name = "tbTimeout";
             this.tbTimeout.Size = new System.Drawing.Size(47, 20);
             this.tbTimeout.TabIndex = 11;
@@ -282,9 +295,9 @@
             // 
             this.lblRecords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRecords.Location = new System.Drawing.Point(242, 5);
+            this.lblRecords.Location = new System.Drawing.Point(205, 8);
             this.lblRecords.Name = "lblRecords";
-            this.lblRecords.Size = new System.Drawing.Size(559, 20);
+            this.lblRecords.Size = new System.Drawing.Size(260, 20);
             this.lblRecords.TabIndex = 10;
             // 
             // rbText
@@ -756,6 +769,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenu_AddServer;
         private System.Windows.Forms.ToolStripMenuItem tsmenu_EditServer;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.Label lblTimeout;
 	}
 }
 
