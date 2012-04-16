@@ -731,43 +731,6 @@ namespace DBMulticast
             resultsTextBox.Visible = true;
         }
 
-        private void dbTree_AfterCheck(object sender, TreeViewEventArgs e)
-        {
-            dbTree.AfterCheck -= new TreeViewEventHandler(dbTree_AfterCheck);
-            CheckChildNodes(e.Node);
-            CheckParentNode(e.Node.Parent);
-            dbTree.AfterCheck += new TreeViewEventHandler(dbTree_AfterCheck);
-        }
-
-        private void CheckParentNode(TreeNode parent)
-        {
-            if (parent != null)
-            {
-                parent.Checked = true;
-                foreach (TreeNode sub in parent.Nodes)
-                {
-                    if (!sub.Checked)
-                    {
-                        parent.Checked = false;
-                        break;
-                    }
-                }
-                CheckParentNode(parent.Parent);
-            }
-        }
-
-        private void CheckChildNodes(TreeNode treeNode)
-        {
-            foreach (TreeNode t in treeNode.Nodes)
-            {
-                if (t.Checked != treeNode.Checked)
-                {
-                    t.Checked = treeNode.Checked;
-                    CheckChildNodes(t);
-                }
-            }
-        }
-
         private void txtSearchServer_TextChanged(object sender, EventArgs e)
         {
             dbTree.SuspendLayout();
@@ -921,9 +884,12 @@ namespace DBMulticast
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dbTree.SelectedNode.Remove();
-            //TODO:: Add Confirmation!!
-            SaveDatabaseDefinitions();
+            var result = MessageBox.Show(string.Format("Do you want to delete {0}?", dbTree.SelectedNode.Text), "Delete Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            if (result == DialogResult.Yes)
+            {
+                dbTree.SelectedNode.Remove();
+                SaveDatabaseDefinitions();
+            }
         }
 
     }
@@ -953,11 +919,11 @@ namespace DBMulticast
         Error
     }
 
-    public class AutoExpandTreeView : TreeView
+    public class AutoExpandTreeView : TriStateTreeView
     {
         DelayedAction<TreeNode> _expandNode;
 
-        public AutoExpandTreeView()
+        public AutoExpandTreeView() :base()
         {
             _expandNode = new DelayedAction<TreeNode>((node) => node.Expand(), 500);
         }

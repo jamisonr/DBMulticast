@@ -55,6 +55,7 @@
             this.rbGrid = new System.Windows.Forms.RadioButton();
             this.resultsTextBox = new ScintillaNet.Scintilla();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.dbTree = new DBMulticast.AutoExpandTreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnRefreshDBs = new System.Windows.Forms.ToolStripButton();
@@ -83,7 +84,6 @@
             this.ctxmenu_DBTree_RightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmenu_AddServer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenu_EditServer = new System.Windows.Forms.ToolStripMenuItem();
-            this.dbTree = new DBMulticast.AutoExpandTreeView();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -366,13 +366,34 @@
             this.splitContainer1.SplitterDistance = 804;
             this.splitContainer1.TabIndex = 12;
             // 
+            // dbTree
+            // 
+            this.dbTree.AllowDrop = true;
+            this.dbTree.CheckBoxes = true;
+            this.dbTree.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dbTree.ImageIndex = 0;
+            this.dbTree.ImageList = this.imageList1;
+            this.dbTree.Location = new System.Drawing.Point(0, 25);
+            this.dbTree.Name = "dbTree";
+            this.dbTree.SelectedImageIndex = 0;
+            this.dbTree.ShowNodeToolTips = true;
+            this.dbTree.Size = new System.Drawing.Size(242, 507);
+            this.dbTree.TabIndex = 1;
+            this.dbTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.dbTree_ItemDrag);
+            this.dbTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dbTree_NodeMouseClick);
+            this.dbTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.dbTree_DragDrop);
+            this.dbTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.dbTree_DragEnter);
+            this.dbTree.DragOver += new System.Windows.Forms.DragEventHandler(this.dbTree_DragOver);
+            this.dbTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dbTree_MouseDown);
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Folder.png");
-            this.imageList1.Images.SetKeyName(1, "Bubble-White.bmp");
-            this.imageList1.Images.SetKeyName(2, "refresh.bmp");
+            this.imageList1.Images.SetKeyName(1, "data-server-icon.png");
+            this.imageList1.Images.SetKeyName(2, "Bubble-White.bmp");
+            this.imageList1.Images.SetKeyName(3, "refresh.bmp");
             // 
             // toolStrip1
             // 
@@ -641,27 +662,6 @@
             this.tsmenu_EditServer.Text = "Edit";
             this.tsmenu_EditServer.Click += new System.EventHandler(this.tsmenu_EditServer_Click);
             // 
-            // dbTree
-            // 
-            this.dbTree.AllowDrop = true;
-            this.dbTree.CheckBoxes = true;
-            this.dbTree.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dbTree.ImageIndex = 0;
-            this.dbTree.ImageList = this.imageList1;
-            this.dbTree.Location = new System.Drawing.Point(0, 25);
-            this.dbTree.Name = "dbTree";
-            this.dbTree.SelectedImageIndex = 0;
-            this.dbTree.ShowNodeToolTips = true;
-            this.dbTree.Size = new System.Drawing.Size(242, 507);
-            this.dbTree.TabIndex = 1;
-            this.dbTree.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.dbTree_AfterCheck);
-            this.dbTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.dbTree_ItemDrag);
-            this.dbTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dbTree_NodeMouseClick);
-            this.dbTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.dbTree_DragDrop);
-            this.dbTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.dbTree_DragEnter);
-            this.dbTree.DragOver += new System.Windows.Forms.DragEventHandler(this.dbTree_DragOver);
-            this.dbTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dbTree_MouseDown);
-            // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
@@ -771,6 +771,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenu_AddServer;
         private System.Windows.Forms.ToolStripMenuItem tsmenu_EditServer;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+
         private System.Windows.Forms.Label lblTimeout;
 	}
 }
