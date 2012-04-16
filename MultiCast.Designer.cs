@@ -771,12 +771,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenu_AddServer;
         private System.Windows.Forms.ToolStripMenuItem tsmenu_EditServer;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-<<<<<<< HEAD
 
-    }
-=======
         private System.Windows.Forms.Label lblTimeout;
 	}
->>>>>>> master
 }
 
