@@ -108,6 +108,9 @@
     <Compile Include="ServerEdit.Designer.cs">
       <DependentUpon>ServerEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="TriStateTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="MultiCast.resx">
       <DependentUpon>MultiCast.cs</DependentUpon>
     </EmbeddedResource>
