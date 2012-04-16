@@ -36,6 +36,7 @@
             this.tb_Database = new System.Windows.Forms.TextBox();
             this.cb_UseSqlCredentials = new System.Windows.Forms.CheckBox();
             this.tb_Password = new System.Windows.Forms.TextBox();
+            this.tb_Password.PasswordChar = '*';
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.tb_Username = new System.Windows.Forms.TextBox();
