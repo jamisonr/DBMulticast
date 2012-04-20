@@ -47,10 +47,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.sqlTextBox = new ScintillaNet.Scintilla();
+            this.lblTimeout = new System.Windows.Forms.Label();
             this.tabResults = new System.Windows.Forms.TabControl();
             this.tbTimeout = new System.Windows.Forms.TextBox();
             this.lblRecords = new System.Windows.Forms.Label();
-            this.lblTimeout = new System.Windows.Forms.Label();
             this.rbText = new System.Windows.Forms.RadioButton();
             this.rbGrid = new System.Windows.Forms.RadioButton();
             this.resultsTextBox = new ScintillaNet.Scintilla();
@@ -83,6 +83,7 @@
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.ctxmenu_DBTree_RightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmenu_AddServer = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenu_EditServer = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -243,17 +244,6 @@
             this.splitContainer3.SplitterDistance = 277;
             this.splitContainer3.TabIndex = 11;
             // 
-            // lblTimeout
-            // 
-            this.lblTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTimeout.Location = new System.Drawing.Point(673, 8);
-            this.lblTimeout.Name = "lblTimeout";
-            this.lblTimeout.Size = new System.Drawing.Size(78, 20);
-            this.lblTimeout.TabIndex = 13;
-            this.lblTimeout.Text = "Timeout (s):";
-            this.lblTimeout.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
             // sqlTextBox
             // 
             this.sqlTextBox.ConfigurationManager.Language = "mssql";
@@ -272,6 +262,17 @@
             this.sqlTextBox.Styles.Max.FontName = "Verdana";
             this.sqlTextBox.TabIndex = 6;
             // 
+            // lblTimeout
+            // 
+            this.lblTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTimeout.Location = new System.Drawing.Point(673, 8);
+            this.lblTimeout.Name = "lblTimeout";
+            this.lblTimeout.Size = new System.Drawing.Size(78, 20);
+            this.lblTimeout.TabIndex = 13;
+            this.lblTimeout.Text = "Timeout (s):";
+            this.lblTimeout.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // tabResults
             // 
             this.tabResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -285,8 +286,7 @@
             // 
             // tbTimeout
             // 
-            this.tbTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top )
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTimeout.Location = new System.Drawing.Point(753, 5);
             this.tbTimeout.Name = "tbTimeout";
             this.tbTimeout.Size = new System.Drawing.Size(47, 20);
@@ -380,7 +380,6 @@
             this.dbTree.Size = new System.Drawing.Size(242, 507);
             this.dbTree.TabIndex = 1;
             this.dbTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.dbTree_ItemDrag);
-            this.dbTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dbTree_NodeMouseClick);
             this.dbTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.dbTree_DragDrop);
             this.dbTree.DragEnter += new System.Windows.Forms.DragEventHandler(this.dbTree_DragEnter);
             this.dbTree.DragOver += new System.Windows.Forms.DragEventHandler(this.dbTree_DragOver);
@@ -643,29 +642,37 @@
             // 
             this.ctxmenu_DBTree_RightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmenu_AddServer,
+            this.copyToolStripMenuItem,
             this.tsmenu_EditServer,
             this.deleteToolStripMenuItem});
             this.ctxmenu_DBTree_RightClick.Name = "ctxmenu_DBTree_RightClick";
-            this.ctxmenu_DBTree_RightClick.Size = new System.Drawing.Size(153, 92);
+            this.ctxmenu_DBTree_RightClick.Size = new System.Drawing.Size(108, 92);
             // 
             // tsmenu_AddServer
             // 
             this.tsmenu_AddServer.Name = "tsmenu_AddServer";
-            this.tsmenu_AddServer.Size = new System.Drawing.Size(152, 22);
+            this.tsmenu_AddServer.Size = new System.Drawing.Size(107, 22);
             this.tsmenu_AddServer.Text = "Add";
             this.tsmenu_AddServer.Click += new System.EventHandler(this.tsmenu_AddServer_Click);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // tsmenu_EditServer
             // 
             this.tsmenu_EditServer.Name = "tsmenu_EditServer";
-            this.tsmenu_EditServer.Size = new System.Drawing.Size(152, 22);
+            this.tsmenu_EditServer.Size = new System.Drawing.Size(107, 22);
             this.tsmenu_EditServer.Text = "Edit";
             this.tsmenu_EditServer.Click += new System.EventHandler(this.tsmenu_EditServer_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -773,6 +780,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
 
         private System.Windows.Forms.Label lblTimeout;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
 	}
 }
 

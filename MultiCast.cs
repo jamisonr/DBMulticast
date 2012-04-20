@@ -633,8 +633,10 @@ namespace DBMulticast
                     {
                         if (resultsGridView.Rows[i].Cells[j].Value != null)
                         {
-                            sbExport.Append(resultsGridView.Rows[i].Cells[j].Value.ToString()).Append(", ");
+                            sbExport.Append(resultsGridView.Rows[i].Cells[j].Value.ToString());
                         }
+                        if (j < colcount - 1)
+                            sbExport.Append(", ");
                     }
                     if (i < rowcount - 1)
                         sbExport.AppendLine();
@@ -754,14 +756,6 @@ namespace DBMulticast
             dbTree.SuspendLayout();
             LoadDatabaseDefinitions();
             dbTree.ResumeLayout();
-        }
-
-        private void dbTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Button.Equals(MouseButtons.Right) && !string.IsNullOrEmpty(e.Node.ToolTipText))
-            {
-                Clipboard.SetText(e.Node.ToolTipText);
-            }
         }
 
         private void dbTree_DragEnter(object sender, DragEventArgs e)
@@ -890,6 +884,12 @@ namespace DBMulticast
                 dbTree.SelectedNode.Remove();
                 SaveDatabaseDefinitions();
             }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string i = "hello";
+            //Clipboard.SetText(e.Node.ToolTipText);
         }
 
     }
