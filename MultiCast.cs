@@ -888,8 +888,8 @@ namespace DBMulticast
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string i = "hello";
-            //Clipboard.SetText(e.Node.ToolTipText);
+            var node = dbTree.SelectedNode;
+            Clipboard.SetText(node.ToolTipText);
         }
 
     }
