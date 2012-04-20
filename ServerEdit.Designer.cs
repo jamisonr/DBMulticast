@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerEdit));
             this.tb_Name = new System.Windows.Forms.TextBox();
             this.tb_Location = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.tb_Database = new System.Windows.Forms.TextBox();
             this.cb_UseSqlCredentials = new System.Windows.Forms.CheckBox();
             this.tb_Password = new System.Windows.Forms.TextBox();
-            this.tb_Password.PasswordChar = '*';
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.tb_Username = new System.Windows.Forms.TextBox();
@@ -110,6 +110,7 @@
             this.tb_Password.Enabled = false;
             this.tb_Password.Location = new System.Drawing.Point(24, 297);
             this.tb_Password.Name = "tb_Password";
+            this.tb_Password.PasswordChar = '*';
             this.tb_Password.Size = new System.Drawing.Size(178, 20);
             this.tb_Password.TabIndex = 12;
             // 
@@ -153,6 +154,7 @@
             // 
             // btn_Cancel
             // 
+            this.btn_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_Cancel.Location = new System.Drawing.Point(126, 340);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
@@ -189,6 +191,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_Cancel;
             this.ClientSize = new System.Drawing.Size(273, 402);
             this.Controls.Add(this.rdoServer);
             this.Controls.Add(this.rdoFolder);
@@ -205,6 +208,7 @@
             this.Controls.Add(this.tb_Location);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.tb_Name);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ServerEdit";
             this.Text = "ServerEdit";
             this.ResumeLayout(false);
