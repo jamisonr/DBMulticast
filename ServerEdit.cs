@@ -22,6 +22,7 @@ namespace DBMulticast
         {
             InitializeComponent();
             IsEdit = isEdit;
+            CenterToParent();
             this.tn = tn;
             rdoServer.Checked = true;
             if (tn.Tag != null && isEdit)
