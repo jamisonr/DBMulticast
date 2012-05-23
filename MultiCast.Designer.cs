@@ -261,6 +261,7 @@
             this.sqlTextBox.Styles.LineNumber.FontName = "Verdana";
             this.sqlTextBox.Styles.Max.FontName = "Verdana";
             this.sqlTextBox.TabIndex = 6;
+            this.sqlTextBox.TextChanged += new System.EventHandler<System.EventArgs>(this.sqlTextBox_TextChanged);
             // 
             // lblTimeout
             // 
@@ -690,6 +691,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MultiCast";
             this.Text = "SQLMulticast";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MultiCast_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

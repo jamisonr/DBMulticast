@@ -18,6 +18,9 @@ namespace DBMulticast
     {
         private BackgroundWorker queryWorker = new BackgroundWorker();
         private DateTime executionStart = new DateTime();
+        private Boolean dirtyquery = false;
+        private string oldquery = "";
+
         TreeNode lastDragDestination = null;
         DateTime lastDragDestinationTime;
 
@@ -701,11 +704,20 @@ namespace DBMulticast
 
         private void SaveMenuItemClick(object sender, EventArgs e)
         {
+            SaveScript();
+        }
+
+        private int SaveScript()
+        {
             var fileLocation = GetSaveLocation("SQL file (*.sql)|*.sql");
-            if (String.IsNullOrEmpty(fileLocation)) return;
+            if (String.IsNullOrEmpty(fileLocation)) return -1;
             var tw = new System.IO.StreamWriter(fileLocation);
             tw.Write(sqlTextBox.Text);
             tw.Close();
+
+            oldquery = sqlTextBox.Text;
+            dirtyquery = false;
+            return 1;
         }
 
         private void ExitMenuItemClick(object sender, EventArgs e)
@@ -892,6 +904,32 @@ namespace DBMulticast
             Clipboard.SetText(node.ToolTipText);
         }
 
+        private void sqlTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!dirtyquery)
+                dirtyquery = true;
+        }
+
+        private void MultiCast_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (dirtyquery && sqlTextBox.Text != oldquery)
+            {
+                DialogResult dr = MessageBox.Show("Save your query?", "Query changed... Save?", MessageBoxButtons.YesNoCancel);
+                switch (dr.ToString())
+                {
+                    case "Yes": // prompt
+                        if (SaveScript() < 0)
+                            e.Cancel = true;
+                        break;
+                    case "Cancel": // abort the form close
+                        e.Cancel = true;
+                        break;
+                    case "No": // go ahead and exit without saving
+                        break;
+
+                }
+            }
+        }
     }
 
     public struct QueryArguments
