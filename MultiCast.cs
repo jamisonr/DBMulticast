@@ -930,6 +930,34 @@ namespace DBMulticast
                 }
             }
         }
+
+        private void copyDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyData(DataGridViewClipboardCopyMode.EnableWithoutHeaderText);
+        }
+
+        private void copyWithHeadersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            copyData(DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText);
+        }
+
+        private void copyData(DataGridViewClipboardCopyMode copymode)
+        {
+            try
+            {
+                var dgv = tabResults.SelectedTab.Controls[0] as DataGridView;
+                dgv.ClipboardCopyMode = copymode;
+                if (dgv != null && dgv.GetCellCount(DataGridViewElementStates.Selected) > 0)
+                {
+                    Clipboard.SetDataObject(((DataGridView)tabResults.SelectedTab.Controls[0]).GetClipboardContent());
+                }
+            }
+            catch (System.Runtime.InteropServices.ExternalException)
+            {
+
+                AddMsg("The Clipboard could not be accessed. Please try again.");
+            }
+        }
     }
 
     public struct QueryArguments
