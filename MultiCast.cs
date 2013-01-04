@@ -176,6 +176,7 @@ namespace DBMulticast
                     grid.Dock = DockStyle.Fill;
                     grid.ColumnWidthChanged += new DataGridViewColumnEventHandler(grid_ColumnWidthChanged);
                     grid.ColumnAdded += new DataGridViewColumnEventHandler(grid_ColumnAdded);
+                    grid.CellFormatting += new DataGridViewCellFormattingEventHandler(grid_CellFormatting);
                     grid.AllowUserToResizeColumns = true;
                     grid.DataSource = dt;
                     tabResults.TabPages.Add(newPage);
@@ -194,6 +195,18 @@ namespace DBMulticast
             execute.Text = "Execute SQL";
             execute.Enabled = true;
             sqlTextBox.Focus();
+        }
+
+        void grid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null)
+            {
+                DataGridView dataGridView = (DataGridView) sender;
+                if (dataGridView.Columns[e.ColumnIndex].ValueType == typeof (DateTime))
+                {
+                    dataGridView.Columns[e.ColumnIndex].DefaultCellStyle.Format = "yyyy'-'MM'-'dd' 'HH':'mm':'ss.fff";
+                }
+            }
         }
 
         void grid_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
