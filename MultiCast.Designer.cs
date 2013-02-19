@@ -30,9 +30,9 @@
 		{
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MultiCast));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.execute = new System.Windows.Forms.Button();
             this.msgTextBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -46,14 +46,14 @@
             this.refreshDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.sqlTextBox = new ScintillaNet.Scintilla();
+            this.sqlTextBox = new ScintillaNET.Scintilla();
             this.lblTimeout = new System.Windows.Forms.Label();
             this.tabResults = new System.Windows.Forms.TabControl();
             this.tbTimeout = new System.Windows.Forms.TextBox();
             this.lblRecords = new System.Windows.Forms.Label();
             this.rbText = new System.Windows.Forms.RadioButton();
             this.rbGrid = new System.Windows.Forms.RadioButton();
-            this.resultsTextBox = new ScintillaNet.Scintilla();
+            this.resultsTextBox = new ScintillaNET.Scintilla();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dbTree = new DBMulticast.AutoExpandTreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -75,6 +75,8 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyWithHeadersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.lblSum = new System.Windows.Forms.ToolStripStatusLabel();
             this.executionProgress = new System.Windows.Forms.ToolStripProgressBar();
@@ -86,8 +88,7 @@
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenu_EditServer = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyWithHeadersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
@@ -150,6 +151,7 @@
             this.newWindowToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
             this.exportResultsToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -254,21 +256,13 @@
             this.sqlTextBox.Margins.Margin0.Width = 15;
             this.sqlTextBox.Name = "sqlTextBox";
             this.sqlTextBox.Size = new System.Drawing.Size(804, 277);
-            this.sqlTextBox.Styles.BraceBad.FontName = "Verdana";
-            this.sqlTextBox.Styles.BraceLight.FontName = "Verdana";
-            this.sqlTextBox.Styles.ControlChar.FontName = "Verdana";
-            this.sqlTextBox.Styles.Default.FontName = "Verdana";
-            this.sqlTextBox.Styles.IndentGuide.FontName = "Verdana";
-            this.sqlTextBox.Styles.LastPredefined.FontName = "Verdana";
-            this.sqlTextBox.Styles.LineNumber.FontName = "Verdana";
-            this.sqlTextBox.Styles.Max.FontName = "Verdana";
             this.sqlTextBox.TabIndex = 6;
-            this.sqlTextBox.TextChanged += new System.EventHandler<System.EventArgs>(this.sqlTextBox_TextChanged);
+            this.sqlTextBox.TextChanged += new System.EventHandler(this.sqlTextBox_TextChanged);
             // 
             // lblTimeout
             // 
-            this.lblTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTimeout.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTimeout.Location = new System.Drawing.Point(673, 8);
             this.lblTimeout.Name = "lblTimeout";
             this.lblTimeout.Size = new System.Drawing.Size(78, 20);
@@ -278,9 +272,9 @@
             // 
             // tabResults
             // 
-            this.tabResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabResults.Location = new System.Drawing.Point(0, 32);
             this.tabResults.Name = "tabResults";
             this.tabResults.SelectedIndex = 0;
@@ -298,8 +292,8 @@
             // 
             // lblRecords
             // 
-            this.lblRecords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRecords.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRecords.Location = new System.Drawing.Point(205, 8);
             this.lblRecords.Name = "lblRecords";
             this.lblRecords.Size = new System.Drawing.Size(260, 20);
@@ -331,22 +325,14 @@
             // 
             // resultsTextBox
             // 
-            this.resultsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.resultsTextBox.ConfigurationManager.Language = "mssql";
             this.resultsTextBox.Location = new System.Drawing.Point(0, 32);
             this.resultsTextBox.Margins.Margin0.Width = 15;
             this.resultsTextBox.Name = "resultsTextBox";
             this.resultsTextBox.Size = new System.Drawing.Size(804, 219);
-            this.resultsTextBox.Styles.BraceBad.FontName = "Verdana";
-            this.resultsTextBox.Styles.BraceLight.FontName = "Verdana";
-            this.resultsTextBox.Styles.ControlChar.FontName = "Verdana";
-            this.resultsTextBox.Styles.Default.FontName = "Verdana";
-            this.resultsTextBox.Styles.IndentGuide.FontName = "Verdana";
-            this.resultsTextBox.Styles.LastPredefined.FontName = "Verdana";
-            this.resultsTextBox.Styles.LineNumber.FontName = "Verdana";
-            this.resultsTextBox.Styles.Max.FontName = "Verdana";
             this.resultsTextBox.TabIndex = 7;
             this.resultsTextBox.Visible = false;
             // 
@@ -484,14 +470,14 @@
             this.grdExecutionStatus.AllowUserToDeleteRows = false;
             this.grdExecutionStatus.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.grdExecutionStatus.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdExecutionStatus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdExecutionStatus.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.grdExecutionStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdExecutionStatus.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Status,
@@ -500,14 +486,14 @@
             this.StatusText,
             this.StartTime,
             this.Message});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdExecutionStatus.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdExecutionStatus.DefaultCellStyle = dataGridViewCellStyle2;
             this.grdExecutionStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdExecutionStatus.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.grdExecutionStatus.GridColor = System.Drawing.SystemColors.ControlLightLight;
@@ -515,14 +501,14 @@
             this.grdExecutionStatus.MultiSelect = false;
             this.grdExecutionStatus.Name = "grdExecutionStatus";
             this.grdExecutionStatus.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdExecutionStatus.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdExecutionStatus.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.grdExecutionStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdExecutionStatus.Size = new System.Drawing.Size(1036, 113);
             this.grdExecutionStatus.TabIndex = 8;
@@ -598,6 +584,20 @@
             this.copyWithHeadersToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(226, 92);
+            // 
+            // copyDataToolStripMenuItem
+            // 
+            this.copyDataToolStripMenuItem.Name = "copyDataToolStripMenuItem";
+            this.copyDataToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.copyDataToolStripMenuItem.Text = "Copy Selection";
+            this.copyDataToolStripMenuItem.Click += new System.EventHandler(this.copyDataToolStripMenuItem_Click);
+            // 
+            // copyWithHeadersToolStripMenuItem
+            // 
+            this.copyWithHeadersToolStripMenuItem.Name = "copyWithHeadersToolStripMenuItem";
+            this.copyWithHeadersToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.copyWithHeadersToolStripMenuItem.Text = "Copy Selection with Headers";
+            this.copyWithHeadersToolStripMenuItem.Click += new System.EventHandler(this.copyWithHeadersToolStripMenuItem_Click);
             // 
             // statusStrip2
             // 
@@ -681,19 +681,12 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // copyDataToolStripMenuItem
+            // saveAsToolStripMenuItem
             // 
-            this.copyDataToolStripMenuItem.Name = "copyDataToolStripMenuItem";
-            this.copyDataToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.copyDataToolStripMenuItem.Text = "Copy Selection";
-            this.copyDataToolStripMenuItem.Click += new System.EventHandler(this.copyDataToolStripMenuItem_Click);
-            // 
-            // copyWithHeadersToolStripMenuItem
-            // 
-            this.copyWithHeadersToolStripMenuItem.Name = "copyWithHeadersToolStripMenuItem";
-            this.copyWithHeadersToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.copyWithHeadersToolStripMenuItem.Text = "Copy Selection with Headers";
-            this.copyWithHeadersToolStripMenuItem.Click += new System.EventHandler(this.copyWithHeadersToolStripMenuItem_Click);
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripClick);
             // 
             // MultiCast
             // 
@@ -758,8 +751,8 @@
 		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem refreshDBToolStripMenuItem;
         private System.Windows.Forms.Panel panel1;
-        private ScintillaNet.Scintilla sqlTextBox;
-        private ScintillaNet.Scintilla resultsTextBox;
+        private ScintillaNET.Scintilla sqlTextBox;
+        private ScintillaNET.Scintilla resultsTextBox;
         private System.Windows.Forms.RadioButton rbText;
         private System.Windows.Forms.RadioButton rbGrid;
         private System.Windows.Forms.Label lblRecords;
@@ -803,6 +796,7 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyWithHeadersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
 	}
 }
 
