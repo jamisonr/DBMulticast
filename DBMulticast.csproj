@@ -161,9 +161,9 @@
     <None Include="ScintillaNet.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="SciLexer.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="SciLexer.dll" />
+    <Content Include="SciLexer64.dll" />
+    <Content Include="ScintillaNET.xml" />
     <Content Include="Script.ico" />
   </ItemGroup>
   <ItemGroup />
