@@ -356,12 +356,35 @@ namespace DBMulticast
                                 }
                                 else
                                 {
-                                    var sb = new StringBuilder(_ds.Tables[0].Rows.Count * 10);
-                                    foreach (DataRow dr in _ds.Tables[0].Rows)
+                                    var sb = new StringBuilder();
+                                    for (int tid = 0; tid < _ds.Tables.Count; tid++)
                                     {
-                                        if (queryWorker.CancellationPending)
-                                            break;
-                                        sb.Append(dr[1].ToString());
+                                        int datarow = 0;
+                                        foreach (DataRow dr in _ds.Tables[tid].Rows)
+                                        {
+                                            if (queryWorker.CancellationPending)
+                                                break;
+                                            if (datarow == 0)
+                                            {
+                                                foreach (DataColumn column in _ds.Tables[tid].Columns)
+                                                {
+                                                    sb.AppendFormat("{0}{1}", column.Ordinal == 0 ? "" : "\t", column.ColumnName);
+                                                }
+                                                sb.AppendLine();
+                                                foreach (DataColumn column in _ds.Tables[tid].Columns)
+                                                {
+                                                    sb.AppendFormat("{0}{1}", column.Ordinal == 0 ? "" : "\t", "".PadRight(column.ColumnName.Length, '-'));
+                                                }
+                                                sb.AppendLine();
+                                            }
+                                            foreach (DataColumn column in _ds.Tables[tid].Columns)
+                                            {
+                                                sb.AppendFormat("{0}{1}", column.Ordinal == 0 ? "" : "\t", dr[column.Ordinal]);
+                                            }
+                                            sb.AppendLine();
+                                            datarow++;
+                                        }
+                                        sb.AppendLine();
                                     }
                                     queryWorker.ReportProgress(0, new QueryProgress()
                                     {
@@ -665,45 +688,54 @@ namespace DBMulticast
         }
 
         private string GetSaveLocation(string filter)
-        {
+        {         
             var retval = String.Empty;
-            try
+            // if there is a sqlFileName then don't save.
+            if (string.IsNullOrEmpty(sqlFilename))
             {
-
-                var dialogSave = new SaveFileDialog();
-                dialogSave.DefaultExt = "csv";
-                dialogSave.Filter = filter;
-                dialogSave.AddExtension = true;
-                dialogSave.RestoreDirectory = true;
-                dialogSave.Title = "Save File Location";
-                if (dialogSave.ShowDialog() == DialogResult.OK)
+                try
                 {
-                    retval = dialogSave.FileName;
-                }
 
-                dialogSave.Dispose();
-                dialogSave = null;
+                    var dialogSave = new SaveFileDialog();
+                    dialogSave.DefaultExt = "csv";
+                    dialogSave.Filter = filter;
+                    dialogSave.AddExtension = true;
+                    dialogSave.RestoreDirectory = true;
+                    dialogSave.Title = "Save File Location";
+                    if (dialogSave.ShowDialog() == DialogResult.OK)
+                    {
+                        retval = dialogSave.FileName;
+                    }
+
+                    dialogSave.Dispose();
+                    dialogSave = null;
+                }
+                catch (Exception ex)
+                {
+                    AddMsg(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                AddMsg(ex.Message);
+                retval = sqlFilename;
             }
             return retval;
         }
 
+        private string sqlFilename = string.Empty;
         private string GetOpenFileLocation()
         {
-            var retval = String.Empty;
             var dialogOpen = new OpenFileDialog();
             dialogOpen.DefaultExt = "sql";
             dialogOpen.Filter = "SQL file (*.sql)|*.sql";
             dialogOpen.AddExtension = true;
             dialogOpen.RestoreDirectory = true;
             if (dialogOpen.ShowDialog() == DialogResult.OK)
-                retval = dialogOpen.FileName;
+                sqlFilename = dialogOpen.FileName;  // filename is saved for later to use to save
             dialogOpen.Dispose();
             dialogOpen = null;
-            return retval;
+            Text = String.Format("{0} - {1}", Name, sqlFilename);  // put the filename in the title
+            return sqlFilename;
         }
 
         private void openMenuItem_Click(object sender, EventArgs e)
@@ -720,10 +752,26 @@ namespace DBMulticast
             SaveScript();
         }
 
+        private void SaveAsToolStripClick(object sender, EventArgs e)
+        {
+            var holdfilename= sqlFilename;
+            sqlFilename = string.Empty;
+            int result =SaveScript();
+            if (result==1)
+            {
+                Text = string.Format("{0} - {1}", Name, sqlFilename);
+            }
+            else
+            {
+                sqlFilename = holdfilename;
+            }
+        }
+
         private int SaveScript()
         {
             var fileLocation = GetSaveLocation("SQL file (*.sql)|*.sql");
             if (String.IsNullOrEmpty(fileLocation)) return -1;
+            sqlFilename = fileLocation;
             var tw = new System.IO.StreamWriter(fileLocation);
             tw.Write(sqlTextBox.Text);
             tw.Close();
@@ -971,6 +1019,8 @@ namespace DBMulticast
                 AddMsg("The Clipboard could not be accessed. Please try again.");
             }
         }
+
+ 
     }
 
     public struct QueryArguments
