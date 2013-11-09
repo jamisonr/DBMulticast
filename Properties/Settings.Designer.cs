@@ -31,5 +31,13 @@ namespace DBMulticast.Properties {
                 return ((string)(this["ServerConfigLocation"]));
             }
         }
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("servers.xml")]
+        public string ServerConfigFileName {
+            get {
+                return ((string)(this["ServerConfigFileName"]));
+            }
+        }
     }
 }
