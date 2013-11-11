@@ -44,8 +44,10 @@ namespace DBMulticast
                         {
                             serversFileLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), appDirectory);
                             if (!File.Exists(Path.Combine(serversFileLocation, serversFileName)))
+                            {
                                 found = false;
-                                serversFileLocation = Settings.Default.ServerConfigLocation;
+                                serversFileLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), appDirectory);
+                            }
                         }
                     }
                 }
