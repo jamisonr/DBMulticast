@@ -429,7 +429,7 @@ namespace DBMulticast
 
         private void LoadDatabaseDefinitions()
         {
-            var configFile = Path.Combine(Settings.Default.ServerConfigLocation, "servers.xml");
+            var configFile = Path.Combine(FormUtility.getServersFileLocation());
             EnsureDBDefsExist(configFile);
             var s = new XmlSerializer(typeof(ServerList));
             using (TextReader r = new StreamReader(configFile))
@@ -458,8 +458,8 @@ namespace DBMulticast
         {
             UpdateServerList();
             var s = new XmlSerializer(typeof(ServerList));
-            File.Copy(Path.Combine(Settings.Default.ServerConfigLocation, "servers.xml"), Path.Combine(Settings.Default.ServerConfigLocation, "servers.xml_backup"), true);
-            using (TextWriter w = new StreamWriter(Path.Combine(Settings.Default.ServerConfigLocation, "servers.xml")))
+            File.Copy(FormUtility.getServersFileLocation(), Path.Combine(FormUtility.getServersFilePath(), "servers.xml_backup"), true);
+            using (TextWriter w = new StreamWriter(FormUtility.getServersFileLocation()))
             {
                 s.Serialize(w, _ServerList);
             }
